@@ -39,16 +39,13 @@ def sentence_encoder(xml_filename, format = None, save = True):
 
             # loop over all the tokens
             for token in tokens:
-                # each token has subtags, take the text part of all subtags.
-                content = [subtag.text for subtag in token] 
-
-                # concat the `0` index text, which is the `word` token. 
-                sent += f'{content[0]} '  
+                if content := [subtag.text for subtag in token]:
+                    sent += f'{content[0]} '  
 
             # keep records of each sentence 
             sentences.append(sent)
 
-        # convert sentences to a string
+            # convert sentences to a string
     text = " ".join(sentences)
 
     # save file to disk
