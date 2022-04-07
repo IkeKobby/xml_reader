@@ -54,7 +54,7 @@ def sentence_encoder(xml_filename, format = None, save = True):
     # save file to disk
     if save:
         prefix = xml_filename.split('.')[0]
-        output_name = f'{prefix}_text_result'
+        output_name = f'{prefix}_text_result.txt'
         with open(output_name,  'w') as text_df:
                 text_df.write(text)
     # for text output
