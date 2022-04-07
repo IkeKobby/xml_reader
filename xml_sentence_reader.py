@@ -23,30 +23,32 @@ def sentence_encoder(xml_filename, format = None, save = True):
     # list to save sentences
     sentences = []
 
-    # loop over the number of sentences in the file
-    for sent in range(len(root[0][3])):
+    # loop  over the number of documents in the file.
+    for doc in range(len(root)):
+        # loop over the number of sentences in the file
+        for sent in range(len(root[doc][3])):
 
-        # get the sentence tag
-        sentence = root[0][3][sent]
+            # get the sentence tag
+            sentence = root[doc][3][sent]
 
-        # get the tokens for each sentence; a sentence contain several tokens, that is, several words
-        tokens = sentence[0]
+            # get the tokens for each sentence; a sentence contain several tokens, that is, several words
+            tokens = sentence[0]
 
-        # set the beginning of a sentence 
-        sent = ''
+            # set the beginning of a sentence 
+            sent = ''
 
-        # loop over all the tokens
-        for token in tokens:
-            # each token has subtags, take the text part of all subtags.
-            content = [subtag.text for subtag in token] 
+            # loop over all the tokens
+            for token in tokens:
+                # each token has subtags, take the text part of all subtags.
+                content = [subtag.text for subtag in token] 
 
-            # concat the `0` index text, which is the `word` token. 
-            sent += f'{content[0]} '  
+                # concat the `0` index text, which is the `word` token. 
+                sent += f'{content[0]} '  
 
-        # keep records of each sentence 
-        sentences.append(sent)
+            # keep records of each sentence 
+            sentences.append(sent)
 
-    # convert sentences to a string
+        # convert sentences to a string
     text = " ".join(sentences)
 
     # save file to disk
