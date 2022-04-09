@@ -54,8 +54,10 @@ class readXML:
         with open(output_name,  'w') as text_df:
                 text_df.write(text)
 
+
+### example use case.   Please update the `in_folder` and `out_folder` to your use case directories. Thanks!
 if __name__ == "__main__":
-    in_folder = '/Users/sugar/Documents/icrisat/test'
-    out_folder = '/Users/sugar/Documents/icrisat/test/results'
+    in_folder = '/Users/sugar/Documents/test'
+    out_folder = '/Users/sugar/Documents/test/results'
     reader = readXML('word', in_folder, out_folder)
     reader._get_files()
