@@ -1,7 +1,7 @@
 import re
 import os
 
-class readXML:
+class parser:
     def __init__(self, element, input_folder, output_folder) -> None:
         self.element = element
         self.input_folder = input_folder
@@ -39,11 +39,17 @@ class readXML:
                 if start_tag_identified:
                     split = re.split('>|<', line)
                     word = split[2]
-                    captured_word += word
+                    if "'" in word:
+                        keep_last_word = captured_records[-1]
+                        captured_records = captured_records[:-1]
+                        captured_word += keep_last_word + word.strip()
+                    else:
+                        captured_word += word
                 if end_tag in line:
                     captured_records.append(captured_word)
                     start_tag_identified = False
                     captured_word = ''
+
 
         # join all words to form one text
         text = " ".join(captured_records)
